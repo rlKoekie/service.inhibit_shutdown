@@ -1,0 +1,8 @@
+cloned this xbmc inhibit shutdown script.
+originally it blocks shutdown on active tcp connections.
+
+I'll be adding features such as:
+-inhibit shutdown on torrent downloads (Transmission)
+-add a delay before allowing shutdown again if it was inhibited (this is to make sure we do not shut down directly after dropping a remote connection. If i am logged in remotely, and want to reconnect, i do not want the machine to go down)
+-...
+
