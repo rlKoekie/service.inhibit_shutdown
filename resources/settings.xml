@@ -4,5 +4,7 @@
         <setting label="Watched ports (remote connections only)" type="text" id="remoteports" default="22, 445" />
         <setting label="Watched ports (local connections only)" type="text" id="localports" default="" />
         <setting label="Sleep time (seconds)" type="number" id="sleep" default="60" />
+        <!-- the label on the countdown is probably too long -->
+        <setting label="Countdown before enabling xbmc standby when no watched ports or services have been found. This value gets multiplied with the Sleep time." type="number" id="idlecount" default="0" />
     </category>
 </settings>
