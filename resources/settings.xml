@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
     <category label="Settings">
-        <setting label="Watched ports (remote connections only)" type="text" id="remoteports" default="22, 445" />
+        <setting label="Watched ports (remote connections only)" type="text" id="remoteports" default="22, 445,139" />
+        <!-- 22: ssh, 445: samba, 139: legacy samba (probably not used) -->
         <setting label="Watched ports (local connections only)" type="text" id="localports" default="" />
         <setting label="Sleep time (seconds)" type="number" id="sleep" default="60" />
         <!-- the label on the countdown is probably too long -->
         <setting label="Countdown before enabling xbmc standby when no watched ports or services have been found. This value gets multiplied with the Sleep time." type="number" id="idlecount" default="0" />
+        <setting label="paths to lockfiles, sparated using semicolumn (;)" type="text" id="lockfilepaths" default="$HOME/shutdownlock;$HOME/.shutdownlockfile" />
+        <setting label="check transmission downloads for activity" type="bool" id="checktransmission" default="false" />
+        <setting label="username for transmission remote" type="text" id="transmissionuser" default="" />
+        <setting label="password for transmission remote (this will be stored in plain text in your $HOME/.xbmc folder)" type="text" id="transmissionpass" default="" />
+        <setting label="minimal download speed (in kb/s) for transmission to be considered active" type="number" id="transmissionminspeed" default="10.0" />
+        <setting label="print debug info to the logfile" type="bool" id="debugme" default="false" />
     </category>
 </settings>
