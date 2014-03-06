@@ -9,6 +9,12 @@ from os import path, popen
 global sleep_time, watched_local, watched_remote, counterdefault, addon
 global lockfilepaths, transmisionMinimalSpeed , transmissionCmd, debugMe
 
+class MyMonitor( xbmc.Monitor ):
+    def __init__( self, *args, **kwargs ):
+        xbmc.Monitor.__init__( self )
+    def onSettingsChanged( self ):
+        load_settings()
+
 def port_set(string):
     ret = set()
     for port in re.findall("[0-9]+", string):
@@ -90,7 +96,7 @@ def check_all(watchlocal=set(), watchremote=set(), lockfilelist=[], transmission
             return True
     return False
 
-def getSettings():
+def load_settings():
     global sleep_time, watched_local, watched_remote, counterdefault, addon
     global lockfilepaths, transmisionMinimalSpeed , transmissionCmd, debugMe
     
@@ -121,7 +127,7 @@ def getSettings():
     debugMe = s('debugme') == 'true'
     #FIXME: I need to check if transmission-remote always returns kb/s
 
-getSettings()
+load_settings()
 counter = counterdefault
 
 mylog("Watching for remote connections to ports {} and for local connections to ports {}, sleep time is {} s.".format(
@@ -132,7 +138,7 @@ mylog("Watching for remote connections to ports {} and for local connections to 
 while not xbmc.abortRequested:
     for i in range(sleep_time):
         if xbmc.abortRequested: break
-        getSettings()
+        load_settings()
         if i==0:
             if check_all(watched_local, watched_remote, lockfilepaths, transmissionCmd, transmisionMinimalSpeed):
                 mylog("Setting InhibitIdleShutdown to true")
